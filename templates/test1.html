@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="{{ STATIC_URL }}js/jquery-1.11.3.js"></script>
+
+</head>
+<body>
+
+
+</div>
+</body>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/go/",
+            data: {
+                csrfmiddlewaretoken: "{{csrf_token}}",
+            },
+            type: "POST",
+            dataType: "json",
+            success: function (result) {
+                if (result['is_succ']) {
+                    window.location.href='http://www.baidu.com';
+                } else {
+                    alert("任务执行失败了");
+                }
+            }
+        });
+    })
+</script>
+</html>

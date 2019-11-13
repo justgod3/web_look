@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{#{% for data in data_list %}#}
+{#    {% if forloop.counter == 1 %}#}
+{#        {% for item in data.items %}#}
+{#            {{ item.1 }}#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{#{% endfor %}#}
+
+
+<table border="1" cellspacing="0">
+    <thead>
+    {% for item in data_list.0.items %}
+        <th>{{ item.1 }}</th>
+    {% endfor %}
+    </thead>
+    <tbody>
+    {% for  data in data_list %}
+        {% if forloop.counter != 1 %}
+            <tr>
+                {% for item in data.items %}
+                    <td>{{ item.1|default_if_none:'' }}</td>
+                {% endfor %}
+            </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

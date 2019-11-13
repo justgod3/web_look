@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    {#    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=1.2">#}
+
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
+{#     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>#}
+    <script src="{{ STATIC_URL }}js/jquery-3.4.1.min.js"></script>
+    <script src="{{ STATIC_URL }}js/angular.min.js"></script>
+    <script src="{{ STATIC_URL }}bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    {% block extrahead %}{% endblock %}
+</head>
+<body>
+    {% block body %}{% endblock %}
+</body>
+{% block JS %}
+
+{% endblock %}
+</html>

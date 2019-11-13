@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block extrahead %}
+    <style>
+
+        .u_title {
+            margin: 0 auto;
+            width: 800px;
+            height: 60px;
+            line-height: 60px;
+            font-size: 30px;
+            color: #000000;
+            text-align: center;
+        }
+
+        .up_body {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-image: url("/static/images/hospital.jpg");
+            background-color: rgba(0, 0, 0, 0.5);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            {#opacity: 0.45;#}
+            {#filter: alpha(opacity=45); /* IE8 及其更早版本 */#}
+        {#text-align: center;#}
+        }
+        .u_content{
+            position: absolute;
+            {#margin: 50px auto;#}
+            margin: auto;
+            width: 800px;
+            height:400px;
+            left: 0;
+            right: 0;
+            top: 50px;
+            bottom: 0;
+            background-color: #FFFFFF;
+            padding-top: 50px;
+            box-shadow: 0 0 10px #f00; border:1px solid green;
+            background: rgba(255,255,255,1);
+        }
+        .u_div {
+            width: 800px;
+            height: 300px;
+            margin: 0 auto;
+            padding: 0 0 0 0;
+        }
+
+        .u_div_word {
+            margin: 20px auto;
+            width: 200px;
+            height: 40px;
+            line-height: 20px;
+        }
+
+        .u_div_file {
+            margin-left: 320px;
+        }
+
+        .u_div_sub {
+            margin-top: 20px;
+            margin-left: 330px;
+        }
+    </style>
+{% endblock %}
+{% block  body %}
+    <div class="up_body">
+        <div class="u_content">
+            <div class="u_title">欢迎来到飞利浦医院中心，这里是excel处理可视化界面</div>
+            <form enctype="multipart/form-data" action="/file/" class="u_div" method="post">
+                {% csrf_token %}
+                <p class="u_div_word">请点击下方按钮上传文件</p>
+                <input type="file" name="myfile" class="u_div_file" ><br>
+                <input type="submit" value="提交" class="btn btn-success u_div_sub">
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{#{% block JS %}#}
+{#    <script type="text/javascript">#}
+{#        function sub() {#}
+{#            alert("运行到此");#}
+{#            $.ajax({#}
+{#                url: $("form").attr("action"),#}
+{#                data: $("form").serialize(),#}
+{#                type: "POST",#}
+{#contentType: 'application/json',  //一定要指定格式 contentType: 'application/json;charset=utf-8',#}
+{#                dataType: "json",#}
+{#                success: function (result) {#}
+{#                    if (result["is_succ"]) {#}
+{#                        alert("上传成功！");#}
+{#                    } else {#}
+{#                        alert(result['error_msg'])#}
+{#                    }#}
+{#                },#}
+{#                error: function () {#}
+{#                    alert("网络故障，请稍后重试！");#}
+{#                }#}
+{#            });#}
+{#        }#}
+{#    </script>#}
+{#{% endblock %}#}

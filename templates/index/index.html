@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block extrahead %}
+    <style>
+        .star-word {
+            display: none;
+            margin: 20px 0 20px 50px;
+            width: 400px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            color: #FFFFFF;
+            font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+        }
+
+        .phi {
+            width: 400px;
+            height: auto;
+            font-size: 16px;
+            line-height: 20px;
+            margin: 0 0 0 50px;
+            color: rgba(145, 162, 230, 1);
+            letter-spacing: 1.2px;
+        }
+
+        .phi:hover {
+            color: #F2F2F2;
+        }
+
+        .u-div {
+            width: 500px;
+            height: 400px;
+            margin: 200px 100px  200px 50px;
+            background-color: red;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div ng-app="myApp" ng-controller="myCtrl" ng-style="myObj">
+        <div ng-app="myApp1" ng-controller="myCtrl1" ng-init="names=[1,2,3,4,5];word='star-word'" ng-style="a1">
+            <div ng-style="star_div" ng-mouseenter="over()" ng-mouseleave="leave()">
+                <span ng-style="star_span" ng-repeat="x in names">
+                    <img src="/static/images/front/e-star.png" alt="星星" ng-style="star" class="star">
+                </span>
+            </div>
+            <div ng-class="word">我们百分努力，只为你的十分满意，</div>
+            <div class="phi">
+                飞利浦，1891年成立于荷兰，主要生产照明、家庭电器、医疗系统方面的产品。飞利浦公司，2007年全球员工已达128,100人，在全球28个国家有生产基地，在150个国家设有销售机构，拥有8万项专利，实力超群。2011年7月11日，飞利浦宣布收购奔腾电器（上海）有限公司，金额约25亿元。
+                2011年10月17日，飞利浦电子发布了第三季度财报，第三季度净利润同比下滑85.9%；同时宣布，飞利浦将在全球范围内裁员4500人。2013年1月底，飞利浦消费电子业务已全部剥离，将聚焦优质生活，医疗和照明设备行业。北京时间2014年12月17日，飞利浦宣布，将以12亿美元收购美国医疗设备制造商Volcano公司。2018年7月19日，《财富》世界500强排行榜发布，飞利浦位列423位。
+                2018年12月18日，世界品牌实验室编制的《2018世界品牌500强》揭晓，飞利浦排名第53位。 2019福布斯全球数字经济100强榜排名第47位。
+                2019年10月，Interbrand发布的全球品牌百强榜排名49。
+            </div>
+
+
+        </div>
+        <div ng-app="myApp2" ng-controller="myCtrl2" ng-init="ud='u-div'" ng-style="a2">
+            <div ng-class="ud"></div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block JS %}
+    <script>
+        var app = angular.module("myApp", ["myApp1", "myApp2"]);
+        app.controller("myCtrl", function ($scope) {
+            $scope.a1 = {
+                "width": "50%",
+                "height": "100%",
+                "margin": "0 0 0 0",
+                {#"position": "absolute",#}
+                "float": "left"
+            },
+                $scope.myObj = {
+                    "background-color": "RGB(104,125,219)",
+                    "margin": "0 0 0 0",
+                    "padding": "0",
+                    "width": "100%",
+                    "height": "100%",
+                    "position": "fixed"
+                }
+        });
+        var myApp1 = angular.module("myApp1", []);
+        myApp1.controller("myCtrl1", function ($scope) {
+            $scope.star_div = {
+                "margin": "200px 0 20px 60px",
+                {#"background-color":"red",#}
+                "width": "230px",
+                "height": "40px",
+                "font-size": "0"
+            },
+                $scope.star_span = {
+                    "display": "inline-block",
+                    "width": "40px",
+                    "height": "40px",
+                    "margin": "0 5px 0 0",
+                },
+                $scope.star = {
+                    "width": "100%",
+                    "height": "100%",
+                },
+                $scope.over = function () {
+                    {#console.log($(".star").length);#}
+                    $(".star").attr("src", "/static/images/front/star1.png");
+                    angular.element(".star-word")[0].style.display = "block";
+                },
+                $scope.leave = function () {
+                    $(".star").attr("src", "/static/images/front/e-star.png");
+                    angular.element(".star-word")[0].style.display = "none";
+                }
+        });
+        var myApp2 = angular.module("myApp2", []);
+        myApp2.controller("myCtrl2", function ($scope) {
+            $scope.a2 = {
+                "width": "50%",
+                "height": "100%",
+                "margin": "0 0 0 0",
+                {#"position": "absolute",#}
+                "float": "right"
+            }
+        });
+    </script>
+{% endblock %}

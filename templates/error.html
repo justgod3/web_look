@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="{{ STATIC_URL }}js/jquery-1.11.3.js"></script>
+    {#    <script>#}
+    {#    var i;#}
+    {#$(function () {#}
+    {#    setTimeout(alert("10"), 100000);#}
+    {# });#}
+    {##}
+    {##}
+    {#    function interval() {#}
+    {#        setInterval(function () {#}
+    {#            i = self.setInterval("countdown()", 10000);#}
+    {#        })#}
+    {#     }#}
+    {##}
+    {#    var int = 60;#}
+    {##}
+    {#    function countdown() {#}
+    {#        document.getElementById("tip").innerHTML = int + "秒之后，自动跳转上传文件页面";#}
+    {#        int--;#}
+    {#        if (int < 0) {#}
+    {#            //清除定时任务#}
+    {#            i = window.clearInterval(i);#}
+    {#            int = 10;#}
+    {#            $("#code").removeAttr("disabled").html("重新获取验证码");#}
+    {#            window.location.href='http://www.baidu.com';#}
+    {#        }#}
+    {#     }#}
+    {#$(function () {#}
+    {#    console.log('111');#}
+    {#    setTimeout(function () {#}
+    {#        console.log('2222')#}
+    {#    },2000)#}
+    {# })#}
+    {#</script>#}
+    <style>
+        body{
+            background:rgba(255,255,255,0.3) url('/static/images/hos2.jpg')   no-repeat fixed center ;
+            background-size: cover;
+            {#opacity: 0.3;#}
+            {#filter: alpha(opacity=45);#}
+        }
+        .err_div{
+            background-color: #FFFFFF;
+            width: 700px;
+            height: 400px;
+            margin: 200px auto;
+            padding-top: 50px;
+            box-shadow: 0 0 10px #f00; border:1px solid green;
+            border: 1px  solid white;
+        }
+        p{
+            font-size: 25px;
+            color: #2aabd2;
+            margin: 30px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="err_div">
+    <p>哎呀,真的很抱歉啊</p>
+    <p >文件上传失败，失败原因是：{{ error_msg }}</p>
+    <p id="tip">10秒之后，自动跳转上传文件页面</p>
+</div>
+</body>
+
+<script>
+    var i;
+    var num = 10;
+
+    $(function () {
+        test();
+     })
+
+    function test() {
+        tip = document.getElementById("tip");
+        i = self.setInterval("countdown()", 1000);
+     }
+
+    function countdown() {
+        document.getElementById("tip").innerHTML = num + "秒之后，自动跳转上传文件页面";
+        num--;
+        if (num < 0) {
+            //清除定时任务
+            num = 10;
+            i = window.clearInterval(i);
+            window.location.href = '/';
+        }
+     }
+</script>
+</html>
