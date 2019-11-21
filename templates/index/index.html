@@ -29,8 +29,87 @@
         .u-div {
             width: 500px;
             height: 400px;
-            margin: 200px 100px  200px 50px;
-            background-color: red;
+            margin: 200px 100px 200px 50px;
+            background-color: #C3D6E8;
+            border: 1px solid rgba(145, 162, 230, 1);
+            position: relative;
+        }
+
+        .u_content {
+            width: 460px;
+            height: 360px;
+            border: 1px dashed green;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            background-color: rgb(246, 246, 246);
+        }
+
+        .up-pic {
+            width: 300px;
+            height: 160px;
+            background-image: url("/static/images/front/up.jpg");
+            background-size: 100% 100%;
+            margin: 20px auto;
+        }
+
+        .fileinput-button {
+            position: relative;
+            overflow: hidden;
+            background: #fabe00;
+            width: 300px;
+            height: 40px;
+            margin: 30px auto;
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+            border: 0;
+            border-radius: 5%;
+            line-height: 40px;
+            vertical-align: middle;
+        }
+
+        .fileinput-button:hover {
+            background: #FF8650;
+        }
+
+        .fileinput-button input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            opacity: 0;
+            -ms-filter: 'alpha(opacity=0)';
+            font-size: 18px;
+            width: 300px;
+            height: 40px;
+            direction: ltr;
+            cursor: pointer;
+        }
+
+        /* Fixes for IE < 8 */
+        @media screen\9 {
+            .fileinput-button input {
+                filter: alpha(opacity=0);
+                font-size: 100%;
+                height: 100%;
+            }
+        }
+
+        .sub {
+            display: block;
+            margin: 30px auto;
+            width: 300px;
+            height: 40px;
+            font-size: 18px;
+            background-color: #C3D6E8;
+        }
+
+        .sub:hover {
+            background-color: rgba(145, 162, 230, 1);
         }
     </style>
 {% endblock %}
@@ -52,8 +131,25 @@
 
 
         </div>
-        <div ng-app="myApp2" ng-controller="myCtrl2" ng-init="ud='u-div'" ng-style="a2">
-            <div ng-class="ud"></div>
+        <div ng-app="myApp2" ng-controller="myCtrl2" ng-init="ud='u-div';udc='u_content';dcd='up-pic';uds='sub'"
+             ng-style="a2">
+            <div ng-class="ud">
+                <div ng-class="udc">
+                    <div ng-class="dcd"></div>
+                    {#                    <div ng-class="dcf"></div>#}
+                    {#                    <div ng-class="dcs"></div>#}
+
+                    <form enctype="multipart/form-data" action="/file/" class="u_div" method="post">
+                        {% csrf_token %}
+                        <div class="fileinput-button">
+                            文件上传<input type="file" name="myfile">
+                        </div>
+                        <input type="submit" value="提交" ng-class="uds">
+                    </form>
+{#                    <button ng-class="uds" ng-click="toggle()"></button>#}
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -116,6 +212,14 @@
                 {#"position": "absolute",#}
                 "float": "right"
             }
+            {#$scope.toggle = $http({#}
+            {#    method: 'GET',#}
+            {#    url: '/angu/'#}
+            {# }).then(function successCallback(response) {#}
+            {#    // 请求成功执行代码#}
+            {# }, function errorCallback(response) {#}
+            {#    // 请求失败执行代码#}
+            {# })#}
         });
     </script>
 {% endblock %}

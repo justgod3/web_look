@@ -15,4 +15,5 @@ urlpatterns = [
     path("del_file/",views.del_file,name="del_file"),
     path("text/",views.text,name="text"),
     path("time/",views.tim,name="time"),
+    path("angu/",views.angu,name="angu"),
 ]

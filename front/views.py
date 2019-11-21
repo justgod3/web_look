@@ -523,3 +523,13 @@ def tim(request):
     for i in range(10):
         print(i)
     return  HttpResponse(del_time)
+
+
+
+def angu(request):
+    '''
+
+    :param request:
+    :return:
+    '''
+    return  HttpResponse("ok")
