@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <script src="http://code.angularjs.org/1.2.25/angular.min.js"></script>
+{#    <script src="script.js"></script>#}
+</head>
+<body>
+<div ng-controller="Controller">
+    <form novalidate class="css-form">
+        Name:
+        <input type="text" ng-model="user.name" required/><br/>
+        邮箱: <input type="email" ng-model="user.email" required/><br/>
+        性别: <label><input type="radio" ng-model="user.gender" value="male"/>男</label>
+        <label><input type="radio" ng-model="user.gender" value="female"/>女</label><br/>
+        <button ng-click="reset()">重置</button>
+        <button ng-click="update(user)">保存</button>
+        <button ng-click="sub()">测试</button>
+    </form>
+</div>
+
+<style type="text/css">
+    .css-form input.ng-invalid.ng-dirty {
+        background-color: #FA787E;
+    }
+
+    .css-form input.ng-valid.ng-dirty {
+        background-color: #78FA89;
+    }
+</style>
+</body>
+<script>
+    function Controller($scope,$http) {
+        $scope.master = {};
+
+        $scope.update = function (user) {
+            $scope.master = angular.copy(user);
+        };
+
+        $scope.reset = function () {
+            $scope.user = angular.copy($scope.master);
+        };
+
+        $scope.reset();
+        $scope.sub = function () {
+            $http({
+                method: 'GET',
+                url: '/angu/'
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                alert('ok')
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+                alert('deny')
+            });
+        }
+    }
+</script>
+</html>

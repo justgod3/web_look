@@ -204,7 +204,7 @@
                 }
         });
         var myApp2 = angular.module("myApp2", []);
-        myApp2.controller("myCtrl2", function ($scope) {
+        myApp2.controller("myCtrl2", function ($scope,) {
             $scope.a2 = {
                 "width": "50%",
                 "height": "100%",
@@ -212,14 +212,16 @@
                 {#"position": "absolute",#}
                 "float": "right"
             }
-            {#$scope.toggle = $http({#}
-            {#    method: 'GET',#}
-            {#    url: '/angu/'#}
-            {# }).then(function successCallback(response) {#}
-            {#    // 请求成功执行代码#}
-            {# }, function errorCallback(response) {#}
-            {#    // 请求失败执行代码#}
-            {# })#}
+            {#$scope.toggle = function () {#}
+            {#    return $http({#}
+            {#        method:'GET',#}
+            {#        url:'/angu/'#}
+            {#    }).then(function  (result) {#}
+            {#        alert('ok')#}
+            {#    }).catch(function  (results) {#}
+            {#        alert('deny')#}
+            {#    })#}
+            {# }#}
         });
     </script>
 {% endblock %}

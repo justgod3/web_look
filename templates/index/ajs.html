@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    {#function test() {#}
+    {#    var arr = new Array();#}
+    {#    for (var i = 0; i < 6; i++) {#}
+    {#        arr[i] = function () {#}
+    {#            return i;//i只用来控制循环，循环结束后泄漏成了test函数的变量#}
+    {#        }#}
+    {#    }#}
+    {#    return arr;#}
+    {#}#}
+    {##}
+    {#var arrObj = new test();#}
+    {#console.log(arrObj[0]());//6arrObj[0]访问的是test函数作用域下的变量i，test中i只用来控制循环，循环结束后泄漏成了test函数的变量#}
+
+
+    function test() {
+    var arr = new Array();
+    for (var i = 0; i < 6; i++) {
+        arr[i] = function(j) {
+            return function (){
+                return j;
+            }
+        }(i)
+    }
+    return arr;
+}
+var arrObj = new test();
+console.log(arrObj[0]());//0
+</script>
+</html>

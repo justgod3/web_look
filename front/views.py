@@ -10,7 +10,7 @@ from django.shortcuts import render, render_to_response, redirect
 # Create your views here.
 from django.template import RequestContext
 from django.urls import reverse
-
+from bokeh.plotting import figure, output_file, show,output_notebook,save
 import openpyxl
 
 logger = logging.getLogger(__name__)
@@ -533,3 +533,49 @@ def angu(request):
     :return:
     '''
     return  HttpResponse("ok")
+
+
+
+def boke(request,color):
+    '''
+    bokeh测试
+    :param request:
+    :return:
+    '''
+    # prepare some data
+    x = [1, 2, 3, 4, 5]
+    y = [6, 7, 2, 4, 5]
+
+    # output to static HTML file
+    output_file("templates\index\lines.html")
+
+    # create a new plot with a title and axis labels
+    p = figure(title="simple line example", x_axis_label='x', y_axis_label='y')
+
+    # add a line renderer with legend and line thickness
+    p.line(x, y, legend="Temp.", line_width=2,color=color)
+    p.legend.location = "top_right"
+    p.legend.click_policy = "hide"
+
+    # show the results
+    save(p)
+    return render(request,'index/lines.html')
+
+
+
+def atest(request):
+    '''
+
+    :param request:
+    :return:
+    '''
+    return render(request,'index/angu.html')
+
+
+def ajs(request):
+    '''
+
+    :param request:
+    :return:
+    '''
+    return  render(request,'index/ajs.html')

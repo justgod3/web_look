@@ -16,4 +16,7 @@ urlpatterns = [
     path("text/",views.text,name="text"),
     path("time/",views.tim,name="time"),
     path("angu/",views.angu,name="angu"),
+    path("boke/<str:color>/",views.boke,name="boke"),
+    path("atest/",views.atest,name='atest'),
+    path("ajs/",views.ajs,name='ajs'),
 ]
